@@ -1,25 +1,31 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import { Header } from './components/Header';
+import PatientRegistrationForm from './components/PatientRegistrationform';
+import VisitPage from './components/VisitPage';
 
 function App() {
+  const [currentPage, setCurrentPage] = useState('registration');
+
+  const handleNavigation = (page) => {
+    setCurrentPage(page);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      {currentPage === 'registration' && (
+        <PatientRegistrationForm onNavigate={() => handleNavigation('visit')} />
+      )}
+      {currentPage === 'visit' && <VisitPage />}
     </div>
   );
 }
 
 export default App;
+
+
+
+
+
+
