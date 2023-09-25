@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-export function PatientRegistrationForm({ onNavigate }) { // Pass onNavigate as a prop
+export function PatientRegistrationForm({ onNavigate }) {
+  // Pass onNavigate as a prop
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    dateOfBirth: '',
-    gender: 'Male',
+    firstName: "",
+    lastName: "",
+    dateOfBirth: "",
+    gender: "Male",
   });
 
   const handleChange = (e) => {
@@ -26,13 +27,12 @@ export function PatientRegistrationForm({ onNavigate }) { // Pass onNavigate as 
 
   const handleClear = () => {
     setFormData({
-      firstName: '',
-      lastName: '',
-      dateOfBirth: '',
-      gender: 'Male',
+      firstName: "",
+      lastName: "",
+      dateOfBirth: "",
+      gender: "Male",
     });
   };
-
 
   return (
     <div className="registration-container">
@@ -85,8 +85,12 @@ export function PatientRegistrationForm({ onNavigate }) { // Pass onNavigate as 
             <option value="Other">Other</option>
           </select>
         </div>
-        <button type="button" onClick={handleClear}>Clear</button>
-      <button type="submit" onClick={handleSubmit}>Save</button>
+        <button type="button" onClick={handleClear}>
+          Clear
+        </button>
+        <button type="submit" onClick={handleSubmit}>
+          Save
+        </button>
       </form>
     </div>
   );
