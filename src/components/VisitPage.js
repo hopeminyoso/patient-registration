@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import './VisitPage.css';
 
-function VisitPage() {
+function VisitPage({ onSave, onNavigate }) {
   const [formData, setFormData] = useState({
     date: '',
     height: '',
     weight: '',
     bmi: '',
+    generalHealth: 'Good',
+    loosingWeight: 'No',
+    comment: '',
+    takingDrugs: 'No',
   });
-
-  const [showSectionB, setShowSectionB] = useState(false);
 
   const calculateBMI = () => {
     const { height, weight } = formData;
@@ -39,9 +41,9 @@ function VisitPage() {
     const calculatedBMI = calculateBMI();
     setFormData({ ...formData, bmi: calculatedBMI });
 
-    setShowSectionB(!isBMIUnder25());
-    console.log(formData);
-  };
+    onSave(formData);
+    onNavigate();
+  }
 
   return (
     <div className="visit-container">
@@ -92,86 +94,101 @@ function VisitPage() {
           />
         </div>
 
-        {isBMIUnder25() ? (
+        {calculateBMI() && (
           <div>
-            {/* Section A */}
-            <h3>Section A</h3>
-            <div>
-              <label htmlFor="generalHealth">General Health</label>
-              <select
-                id="generalHealth"
-                name="generalHealth"
-                value={formData.generalHealth}
-                onChange={handleChange}
-              >
-                <option value="Good">Good</option>
-                <option value="Poor">Poor</option>
-              </select>
-            </div>
-            <div>
-              <label htmlFor="loosingWeight">Have you ever been on a diet to lose weight?</label>
-              <select
-                id="loosingWeight"
-                name="loosingWeight"
-                value={formData.loosingWeight}
-                onChange={handleChange}
-              >
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
-              </select>
-            </div>
-            <div>
-              <label htmlFor="comment">Comments</label>
-              <textarea
-                id="comment"
-                name="comment"
-                value={formData.comment}
-                onChange={handleChange}
-              />
-            </div>
+            {isBMIUnder25() ? (
+              <div>
+                {/* Section A */}
+                <h3>Section A</h3>
+                <div>
+                  <label htmlFor="generalHealth">General Health</label>
+                  <select
+                    id="generalHealth"
+                    name="generalHealth"
+                    value={formData.generalHealth}
+                    onChange={handleChange}
+                  >
+                    <option value="Good">Good</option>
+                    <option value="Poor">Poor</option>
+                  </select>
+                </div>
+                <div>
+                  <label htmlFor="loosingWeight">Have you ever been on a diet to lose weight?</label>
+                  <select
+                    id="loosingWeight"
+                    name="loosingWeight"
+                    value={formData.loosingWeight}
+                    onChange={handleChange}
+                  >
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+                <div>
+                  <label htmlFor="comment">Comments</label>
+                  <textarea
+                    id="comment"
+                    name="comment"
+                    value={formData.comment}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+            ) : (
+              <div>
+                {/* Section B */}
+                <h3>Section B</h3>
+                <div>
+                  <label htmlFor="generalHealth">General Health</label>
+                  <select
+                    id="generalHealth"
+                    name="generalHealth"
+                    value={formData.generalHealth}
+                    onChange={handleChange}
+                  >
+                    <option value="Good">Good</option>
+                    <option value="Poor">Poor</option>
+                  </select>
+                </div>
+                <div>
+                  <label htmlFor="takingDrugs">Are you currently taking any drugs?</label>
+                  <select
+                    id="takingDrugs"
+                    name="takingDrugs"
+                    value={formData.takingDrugs}
+                    onChange={handleChange}
+                  >
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                  </select>
+                </div>
+                <div>
+                  <label htmlFor="comment">Comments</label>
+                  <textarea
+                    id="comment"
+                    name="comment"
+                    value={formData.comment}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+            )}
           </div>
-        ) : showSectionB ? (
-          <div>
-            {/* Section B */}
-            <h3>Section B</h3>
-            <div>
-              <label htmlFor="generalHealth">General Health</label>
-              <select
-                id="generalHealth"
-                name="generalHealth"
-                value={formData.generalHealth}
-                onChange={handleChange}
-              >
-                <option value="Good">Good</option>
-                <option value="Poor">Poor</option>
-              </select>
-            </div>
-            <div>
-              <label htmlFor="takingDrugs">Are you currently taking any drugs?</label>
-              <select
-                id="takingDrugs"
-                name="takingDrugs"
-                value={formData.takingDrugs}
-                onChange={handleChange}
-              >
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
-              </select>
-            </div>
-            <div>
-              <label htmlFor="comment">Comments</label>
-              <textarea
-                id="comment"
-                name="comment"
-                value={formData.comment}
-                onChange={handleChange}
-              />
-            </div>
-          </div>
-        ) : null /* Conditionally render Section B based on showSectionB state */}
-        
+        )}
+
         <button type="submit">Save</button>
       </form>
+    </div>
+  );
+}
+
+// eslint-disable-next-line no-unused-vars
+function PatientListing() {
+  // Patient listing component content
+  return (
+    <div>
+      <h2>Patient Listing</h2>
+      {/* Render Patient Listing report content */}
     </div>
   );
 }
