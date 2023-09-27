@@ -1,40 +1,37 @@
 import React, { useState, useEffect } from 'react';
+import './Patient.css';
 
-function PatientListing() {
-  const [patientRecords, setPatientRecords] = useState([  {
-    id: 1,
-    firstName: 'Brian',
-    lastName: 'Omondi',
-    dateOfBirth: '1997-02-11',
-    bmi: 24.5,
-  },
-  {
-    id: 2,
-    firstName: 'Hope',
-    lastName: 'Shirley',
-    dateOfBirth: '2000-05-26',
-    bmi: 22.0,
-  },
-{id: 2,
-    firstName: 'Ryan',
-    lastName: 'John',
-    dateOfBirth: '2005-12-26',
-    bmi: 22.0,
-  },]); 
-  const [filteredRecords, setFilteredRecords] = useState([]);
+const PatientListing = () => {
+  const [patients, setPatients] = useState([]);
+  const [filteredPatients, setFilteredPatients] = useState([]);
   const [selectedDate, setSelectedDate] = useState('');
 
   useEffect(() => {
-    // Simulate loading patient records (Replace with actual data retrieval)
-    const fetchData = async () => {
-      // Replace with your data fetching logic
-      const response = await fetch('/api/patients');
-      const data = await response.json();
-      setPatientRecords(data);
-    };
-
-    fetchData();
+    fetch('/src/data/db.json')
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Fetched Data:', data);
+        // Convert the visitDate format to "YYYY-MM-DD"
+        const convertedData = data.patients.map((patient) => ({
+          ...patient,
+          visitDate: convertDateFormat(patient.visitDate),
+        }));
+        setPatients(convertedData);
+        setFilteredPatients(convertedData);
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
   }, []);
+
+  const convertDateFormat = (dateString) => {
+    const parts = dateString.split('-');
+    if (parts.length === 3) {
+      const [month, day, year] = parts;
+      return `${year}-${month}-${day}`;
+    }
+    return dateString; 
+  };
 
   const classifyBMI = (bmi) => {
     if (bmi < 18.5) return 'Underweight';
@@ -44,22 +41,23 @@ function PatientListing() {
 
   const handleDateFilterChange = (e) => {
     const selectedDate = e.target.value;
+    console.log('Selected Date:', selectedDate);
     setSelectedDate(selectedDate);
-
-    // Filter patient records based on the selected date
-    const filtered = patientRecords.filter((record) => {
-
-      return record.date === selectedDate;
-    });
-
-    setFilteredRecords(filtered);
+  
+    // Filter patient records based on the selected visit date
+    const filtered = patients?.filter((patient) => {
+      console.log('Patient Visit Date:', patient.visitDate);
+      return patient.visitDate === selectedDate;
+    }) || [];
+    console.log('Filtered Patients:', filtered);
+    setFilteredPatients(filtered);
   };
 
   return (
     <div>
-      <h2>Patient Listing</h2>
+      <h2>Patient Listing (Report)</h2>
       <div>
-        <label htmlFor="filterDate">Filter by Date:</label>
+        <label htmlFor="filterDate">Filter by Visit Date:</label>
         <input
           type="date"
           id="filterDate"
@@ -77,7 +75,7 @@ function PatientListing() {
           </tr>
         </thead>
         <tbody>
-          {filteredRecords.map((patient) => (
+          {filteredPatients.map((patient) => (
             <tr key={patient.id}>
               <td>{`${patient.firstName} ${patient.lastName}`}</td>
               <td>{patient.dateOfBirth}</td>
@@ -87,9 +85,10 @@ function PatientListing() {
           ))}
         </tbody>
       </table>
+      {console.log('Component Rerendered')}
     </div>
   );
-}
+};
 
 export default PatientListing;
 
