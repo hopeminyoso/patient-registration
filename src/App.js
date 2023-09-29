@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import './App.css';
-import { Header } from './components/Header';
-import PatientRegistrationForm from './components/PatientRegistrationform';
+import Navbar from './components/Navbar';
+import PatientRegistrationForm from './components/PatientRegistrationForm';
 import VisitPage from './components/VisitPage';
 import PatientListing from './components/PatientListing';
+import Home from './components/Home'
 
 function App() {
   const [currentPage, setCurrentPage] = useState('registration');
@@ -36,7 +37,8 @@ try {
 
   return (
     <div className="App">
-      <Header />
+      <Navbar />
+      <Home />
 
       {currentPage === 'registration' && (
         <PatientRegistrationForm onNavigate={() => handleNavigation('visit')} />
