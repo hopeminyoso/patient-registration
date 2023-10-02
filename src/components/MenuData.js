@@ -6,23 +6,23 @@ export const MenuData = [
         icon:"fa-solid fa-house-user"
     },
     {
-        title:"About",
-        url:"#",
-        cName:"nav-links",
-        icon:"fas fa-info-circle"
-    },
-    {
-        title:"Service",
-        url:"#",
-        cName:"nav-links",
-        icon:"fa-solid fa-briefcase"
-    },
-    {
-        title:"Contact",
-        url:"#",
-        cName:"nav-links",
-        icon:"fa-solid fa-address-book"
-    },
+        title: "Registration",
+        url: "#registration",
+        cName: "nav-links",
+        icon: "fas fa-user-plus"
+      },
+      {
+        title: "Visits",
+        url: "#visits",
+        cName: "nav-links",
+        icon: "fas fa-clipboard"
+      },
+      {
+        title: "Listing",
+        url: "#listing",
+        cName: "nav-links",
+        icon: "fas fa-list"
+      },
     {
         title:"Sign Up",
         url:"#",

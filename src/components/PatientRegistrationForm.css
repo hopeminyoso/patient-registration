@@ -1,0 +1,61 @@
+/* Container styling */
+.registration-container {
+    background-image: url('../assets/background.jpg.jpg');
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Form element styling */
+  .registration-container form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .registration-container label {
+    font-weight: bold;
+    margin-bottom: 6px;
+  }
+  
+  .registration-container input[type="text"],
+  .registration-container input[type="number"],
+  .registration-container input[type="date"],
+  .registration-container select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  .registration-container h2 {
+    margin-bottom: 16px;
+  }
+  
+  /* Button styling */
+  .registration-container button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  
+  .registration-container button[type="button"] {
+    background-color: #ccc;
+    color: #333;
+    margin-right: 10px;
+  }
+  
+  .registration-container button:hover {
+    background-color: #0056b3;
+  }
+  

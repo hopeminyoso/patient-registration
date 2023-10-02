@@ -1,6 +1,7 @@
-import { Component } from "react";
-import MenuData from './MenuData';
-import "./NavbarStyles.css";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom'; // Import Link from React Router
+import MenuData from './MenuData'; // Ensure that MenuData contains the correct URLs
+import './NavbarStyles.css';
 
 class Navbar extends Component {
   state = { clicked: false };
@@ -17,15 +18,14 @@ class Navbar extends Component {
           <i className={this.state.clicked ? "fas fa-times" : "fas fa-bars"}></i>
         </div>
         <ul className={`nav-menu ${this.state.clicked ? "active" : ""}`}>
-          {MenuData.map((item, index) => {
-            return (
-              <li key={index}>
-                <a href={item.url} className={item.cName}>
-                  <i className={`fas ${item.icon}`}></i>{item.title}
-                </a>
-              </li>
-            );
-          })}
+          {MenuData.map((item, index) => (
+            <li key={index}>
+              {/* Use Link for navigation */}
+              <Link to={item.url} className={item.cName}>
+                <i className={`fas ${item.icon}`}></i>{item.title}
+              </Link>
+            </li>
+          ))}
         </ul>
       </nav>
     );
@@ -33,4 +33,3 @@ class Navbar extends Component {
 }
 
 export default Navbar;
-

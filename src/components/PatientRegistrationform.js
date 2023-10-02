@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import Swal from "sweetalert2";
+import './PatientRegistrationForm.css';
 
-export function PatientRegistrationForm({ onNavigate }) {
-  // Pass onNavigate as a prop
+function PatientRegistrationForm({ onNavigate }) {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -21,8 +22,18 @@ export function PatientRegistrationForm({ onNavigate }) {
     e.preventDefault();
     // Save patient registration details
 
-    // Navigate to the VisitPage
-    onNavigate();
+    // Generate a random patient number (adjust the range as needed)
+    const randomNumber = Math.floor(Math.random() * 1000000);
+
+    // Display a SweetAlert success message with the patient number
+    Swal.fire({
+      title: "Registration Successful",
+      text: `Your unique patient number is: ${randomNumber}`,
+      icon: "success",
+    }).then(() => {
+      // Navigate to the VisitPage after clicking "OK" in SweetAlert
+      onNavigate();
+    });
   };
 
   const handleClear = () => {
@@ -97,3 +108,4 @@ export function PatientRegistrationForm({ onNavigate }) {
 }
 
 export default PatientRegistrationForm;
+
