@@ -1,31 +1,64 @@
-
-.hero {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  background-image: url('../assets/med.png.jpg');
-  background-size: cover;
-  background-position: right;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.hospital-name-custom {
+  color: #fff; 
+  text-align: center; 
+  margin-top: 80px;
+  padding-top: 20px; 
+  font-size: 2rem;
+  font-weight: 500;
 }
 
 
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.4); 
-}
-
-
-.content {
-  text-align: center;
+.hospital-description-custom {
   color: #fff;
-  z-index: 1; }
+  text-align: center; 
+  padding-top: 10px;
+  font-size: 1.5rem;
+}
+
+
+.hospital-info-custom {
+  color: #fff;
+  text-align: center; 
+  margin-top: 10px; 
+  padding-top: 10px; 
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+
+.service-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.service {
+  flex-basis: calc(25% - 20px);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  margin: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.service-icon {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.service h3 {
+  font-size: 1.5rem;
+}
+
+.service p {
+  font-size: 1rem;
+}
+
+
+
+
 
 
 

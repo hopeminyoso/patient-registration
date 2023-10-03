@@ -99,7 +99,6 @@ function VisitPage({ onSave, onNavigate }) {
             {isBMIUnder25() ? (
               <div>
                 {/* Section A */}
-                <h3>Section A</h3>
                 <div>
                   <label htmlFor="generalHealth">General Health</label>
                   <select
@@ -137,7 +136,6 @@ function VisitPage({ onSave, onNavigate }) {
             ) : (
               <div>
                 {/* Section B */}
-                <h3>Section B</h3>
                 <div>
                   <label htmlFor="generalHealth">General Health</label>
                   <select

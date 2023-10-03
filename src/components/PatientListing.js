@@ -48,17 +48,18 @@ const PatientListing = () => {
   };
 
   return (
-    <div>
-      <h2>Patient Listing (Report)</h2>
-      <div>
-        <label htmlFor="filterDate">Filter by Visit Date:</label>
-        <input
-          type="date"
-          id="filterDate"
-          value={selectedDate}
-          onChange={handleDateFilterChange}
-        />
-      </div>
+    <div className="container">
+    <h2>Patient Listing (Report)</h2>
+    <div className="filter-container">
+      <label htmlFor="filterDate">Filter by Visit Date:</label>
+      <input
+        type="date"
+        id="filterDate"
+        value={selectedDate}
+        onChange={handleDateFilterChange}
+      />
+    </div>
+    <div className="table-container"> {/* Wrap the table in a container */}
       <table>
         <thead>
           <tr>
@@ -69,16 +70,17 @@ const PatientListing = () => {
           </tr>
         </thead>
         <tbody>
-          {filteredPatients.map((patient) => (
-            <tr key={patient.id}>
-              <td>{`${patient.firstName} ${patient.lastName}`}</td>
-              <td>{patient.dateOfBirth}</td>
-              <td>{patient.bmi}</td>
-              <td>{classifyBMI(patient.bmi)}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+        {filteredPatients.map((patient) => (
+          <tr key={patient.id}>
+            <td>{`${patient.firstName} ${patient.lastName}`}</td>
+            <td>{patient.dateOfBirth}</td>
+            <td>{patient.bmi}</td>
+            <td>{classifyBMI(patient.bmi)}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
       {console.log('Component Rerendered')}
     </div>
   );
