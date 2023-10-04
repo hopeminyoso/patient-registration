@@ -43,7 +43,7 @@ function VisitPage({ onSave, onNavigate }) {
 
     onSave(formData);
     onNavigate();
-  }
+  };
 
   return (
     <div className="visit-container">
@@ -97,78 +97,70 @@ function VisitPage({ onSave, onNavigate }) {
         {calculateBMI() && (
           <div>
             {isBMIUnder25() ? (
+              /* Section A */
               <div>
-                {/* Section A */}
-                <div>
-                  <label htmlFor="generalHealth">General Health</label>
-                  <select
-                    id="generalHealth"
-                    name="generalHealth"
-                    value={formData.generalHealth}
-                    onChange={handleChange}
-                  >
-                    <option value="Good">Good</option>
-                    <option value="Poor">Poor</option>
-                  </select>
-                </div>
-                <div>
-                  <label htmlFor="loosingWeight">Have you ever been on a diet to lose weight?</label>
-                  <select
-                    id="loosingWeight"
-                    name="loosingWeight"
-                    value={formData.loosingWeight}
-                    onChange={handleChange}
-                  >
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                  </select>
-                </div>
-                <div>
-                  <label htmlFor="comment">Comments</label>
-                  <textarea
-                    id="comment"
-                    name="comment"
-                    value={formData.comment}
-                    onChange={handleChange}
-                  />
-                </div>
+                <label htmlFor="generalHealth">General Health</label>
+                <select
+                  id="generalHealth"
+                  name="generalHealth"
+                  value={formData.generalHealth}
+                  onChange={handleChange}
+                >
+                  <option value="Good">Good</option>
+                  <option value="Poor">Poor</option>
+                </select>
+                <label htmlFor="loosingWeight">
+                  Have you ever been on a diet to lose weight?
+                </label>
+                <select
+                  id="loosingWeight"
+                  name="loosingWeight"
+                  value={formData.loosingWeight}
+                  onChange={handleChange}
+                >
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                </select>
+                <label htmlFor="comment">Comments</label>
+                <textarea
+                  id="comment"
+                  name="comment"
+                  value={formData.comment}
+                  onChange={handleChange}
+                />
               </div>
             ) : (
+              /* Section B */
               <div>
-                {/* Section B */}
-                <div>
-                  <label htmlFor="generalHealth">General Health</label>
-                  <select
-                    id="generalHealth"
-                    name="generalHealth"
-                    value={formData.generalHealth}
-                    onChange={handleChange}
-                  >
-                    <option value="Good">Good</option>
-                    <option value="Poor">Poor</option>
-                  </select>
-                </div>
-                <div>
-                  <label htmlFor="takingDrugs">Are you currently taking any drugs?</label>
-                  <select
-                    id="takingDrugs"
-                    name="takingDrugs"
-                    value={formData.takingDrugs}
-                    onChange={handleChange}
-                  >
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                  </select>
-                </div>
-                <div>
-                  <label htmlFor="comment">Comments</label>
-                  <textarea
-                    id="comment"
-                    name="comment"
-                    value={formData.comment}
-                    onChange={handleChange}
-                  />
-                </div>
+                <label htmlFor="generalHealth">General Health</label>
+                <select
+                  id="generalHealth"
+                  name="generalHealth"
+                  value={formData.generalHealth}
+                  onChange={handleChange}
+                >
+                  <option value="Good">Good</option>
+                  <option value="Poor">Poor</option>
+                </select>
+                <label htmlFor="takingDrugs">
+                  Are you currently taking any drugs?
+                </label>
+                <select
+                  id="takingDrugs"
+                  name="takingDrugs"
+                  value={formData.takingDrugs}
+                  onChange={handleChange}
+                >
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                </select>
+                <label htmlFor="comment">Comments</label>
+                <textarea
+                  id="comment"
+                  name="comment"
+                  value={formData.comment}
+                  onChange={handleChange}
+                />
               </div>
             )}
           </div>
@@ -176,17 +168,6 @@ function VisitPage({ onSave, onNavigate }) {
 
         <button type="submit">Save</button>
       </form>
-    </div>
-  );
-}
-
-// eslint-disable-next-line no-unused-vars
-function PatientListing() {
-  // Patient listing component content
-  return (
-    <div>
-      <h2>Patient Listing</h2>
-      {/* Render Patient Listing report content */}
     </div>
   );
 }

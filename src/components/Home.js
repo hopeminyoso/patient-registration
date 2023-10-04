@@ -6,7 +6,6 @@ function Home() {
     <div className="hero">
       <div className="overlay"></div>
       <div className="content">
-        <h1 className="hospital-name-custom">Welcome to Pona Healthcare</h1>
         <p className="hospital-description-custom">Your Wellness, Our Commitment</p>
         <div className="hospital-info-custom">
           <p>
@@ -19,7 +18,7 @@ function Home() {
 
         <div className="services">
           <div className="service-container">
-            <div className="service">
+            <div className="service fade-in">
               <i className="fas fa-syringe service-icon"></i>
               <h3>Surgical Services</h3>
               <p>
@@ -27,7 +26,7 @@ function Home() {
                 experienced surgeons to ensure your well-being.
               </p>
             </div>
-            <div className="service">
+            <div className="service fade-in">
               <i className="fas fa-medkit service-icon"></i>
               <h3>Medical Services</h3>
               <p>
@@ -35,7 +34,7 @@ function Home() {
                 medical conditions, providing you with the best care possible.
               </p>
             </div>
-            <div className="service">
+            <div className="service fade-in">
               <i className="fas fa-pills service-icon"></i>
               <h3>Pharmaceutical Services</h3>
               <p>
@@ -43,7 +42,7 @@ function Home() {
                 medication needs, ensuring your health and safety.
               </p>
             </div>
-            <div className="service">
+            <div className="service fade-in">
               <i className="fas fa-microscope service-icon"></i>
               <h3>Diagnostics Services</h3>
               <p>
@@ -59,6 +58,5 @@ function Home() {
 }
 
 export default Home;
-
 
 

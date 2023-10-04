@@ -1,18 +1,10 @@
-.hospital-name-custom {
-  color: #fff; 
-  text-align: center; 
-  margin-top: 80px;
-  padding-top: 20px; 
-  font-size: 2rem;
-  font-weight: 500;
-}
-
 
 .hospital-description-custom {
   color: #fff;
   text-align: center; 
-  padding-top: 10px;
+  padding-top: 30px;
   font-size: 1.5rem;
+  margin-top: 30px;
 }
 
 
@@ -28,20 +20,39 @@
 
 .service-container {
   display: flex;
-  justify-content: space-around;
   flex-wrap: wrap;
-  margin-top: 20px;
+  justify-content: center; /* Center the columns horizontally */
+  max-width: 800px; /* Limit the maximum width */
+  margin: 0 auto; /* Center the container */
 }
 
 .service {
-  flex-basis: calc(25% - 20px);
+  flex-basis: calc(50% - 20px); /* Set flex-basis to make them narrower */
+  max-width: 800px; /* Limit the maximum width of individual service containers */
   background-color: #fff;
   padding: 20px;
   border-radius: 10px;
   text-align: center;
   margin: 10px;
+  margin-inline: 10px;
+  margin-bottom: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: opacity 0.3s ease-in-out;
 }
+
+
+.fade-in {
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+} 
 
 .service-icon {
   font-size: 2rem;
