@@ -8,18 +8,16 @@
 
 
 .filter-container {
-  margin-bottom: 20px; /* Add some space between the filter and the table */
-}
+  margin-bottom: 20px; }
 
 .table-container {
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: auto;
-  max-width: 90%; /* Optionally adjust the table width */
-}
+  max-width: 90%; }
 
-/* Table headers */
+
 table th {
   background-color: #007bff;
   color: #fff;
@@ -28,19 +26,17 @@ table th {
   text-align: left;
 }
 
-/* Table rows */
 table tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
-/* Table cell padding and border */
+
 table td {
   padding: 8px;
   border: 1px solid #ddd;
   color: #000;
 }
 
-/* Highlighted BMI status colors */
 table td.overweight {
   background-color: #ffc107;
   color: #333;

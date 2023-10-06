@@ -4,7 +4,7 @@
   text-align: center; 
   padding-top: 30px;
   font-size: 1.5rem;
-  margin-top: 30px;
+  margin-top: 70px;
 }
 
 
@@ -12,7 +12,7 @@
   color: #fff;
   text-align: center; 
   margin-top: 10px; 
-  padding-top: 10px; 
+ 
   font-size: 1rem;
   line-height: 1.5;
 }
@@ -21,14 +21,14 @@
 .service-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; /* Center the columns horizontally */
-  max-width: 800px; /* Limit the maximum width */
-  margin: 0 auto; /* Center the container */
+  justify-content: center; 
+  max-width: 800px;
+  margin: 0 auto; 
 }
 
 .service {
-  flex-basis: calc(50% - 20px); /* Set flex-basis to make them narrower */
-  max-width: 800px; /* Limit the maximum width of individual service containers */
+  flex-basis: calc(50% - 20px); 
+  max-width: 800px; 
   background-color: #fff;
   padding: 20px;
   border-radius: 10px;
