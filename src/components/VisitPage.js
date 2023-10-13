@@ -36,13 +36,30 @@ function VisitPage({ onSave, onNavigate }) {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const calculatedBMI = calculateBMI();
     setFormData({ ...formData, bmi: calculatedBMI });
-
-    onSave(formData);
-    onNavigate();
+  
+    try {
+      const response = await fetch('/api/visits', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+  
+      if (response.ok) {
+        // Handle a successful response
+        // You might want to navigate to a different page or show a success message
+      } else {
+        // Handle errors, e.g., validation errors from the backend
+        console.error('Error saving visit data');
+      }
+    } catch (error) {
+      console.error('Error connecting to the server:', error);
+    }
   };
 
   return (
