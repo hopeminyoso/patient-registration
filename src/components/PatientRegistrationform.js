@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 import './PatientRegistrationForm.css';
+import { registerPatient } from '../api/api'; // Import the registerPatient function from your API module
 
 function PatientRegistrationForm({ onNavigate }) {
   const [formData, setFormData] = useState({
@@ -19,31 +20,31 @@ function PatientRegistrationForm({ onNavigate }) {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault(); // Prevent the default form submission behavior
+    e.preventDefault();
 
-    // Save patient registration details
+    // Prepare patient registration data
+    const patientData = {
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      dateOfBirth: formData.dateOfBirth,
+      gender: formData.gender,
+    };
 
-    // Generate a random patient number (adjust the range as needed)
-    const randomNumber = Math.floor(Math.random() * 1000000);
-
-    // Display a SweetAlert success message with the patient number
-    Swal.fire({
-      title: "Registration Successful",
-      text: `Your unique patient number is: ${randomNumber}`,
-      icon: "success",
-    }).then(() => {
-      // Navigate to the VisitPage after clicking "OK" in SweetAlert
-      onNavigate();
-    });
-  };
-
-  const handleClear = () => {
-    setFormData({
-      firstName: "",
-      lastName: "",
-      dateOfBirth: "",
-      gender: "Male",
-    });
+    // Use the registerPatient function to send the patient data to your API
+    registerPatient(patientData)
+      .then((response) => {
+        Swal.fire({
+          title: 'Registration Successful',
+          text: `Your unique patient number is: ${response.patientNumber}`, // Make sure your API returns the patientNumber
+          icon: 'success',
+        }).then(() => {
+          // Navigate to the VisitPage after clicking "OK" in SweetAlert
+          onNavigate();
+        });
+      })
+      .catch((error) => {
+        console.error('Error registering the patient:', error);
+      });
   };
 
   return (
@@ -98,9 +99,6 @@ function PatientRegistrationForm({ onNavigate }) {
               <option value="Other">Other</option>
             </select>
           </div>
-          <button type="button" onClick={handleClear}>
-            Clear
-          </button>
           <button type="submit">Save</button>
         </form>
       </div>
@@ -109,7 +107,3 @@ function PatientRegistrationForm({ onNavigate }) {
 }
 
 export default PatientRegistrationForm;
-
-
-
-

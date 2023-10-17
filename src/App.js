@@ -6,6 +6,7 @@ import VisitPage from './components/VisitPage';
 import PatientListing from './components/PatientListing';
 import Home from './components/Home';
 
+
 function App() {
   return (
     <Router>

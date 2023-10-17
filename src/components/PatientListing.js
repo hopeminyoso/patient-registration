@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Patient.css';
+import { fetchPatients } from '../api/api';
 
 const PatientListing = () => {
   const [patients, setPatients] = useState([]);
@@ -7,17 +8,15 @@ const PatientListing = () => {
   const [selectedDate, setSelectedDate] = useState('');
 
   useEffect(() => {
-    // Make an API request to fetch patient data from the backend
-    fetch('/api/patients') // Replace with the correct backend route
-      .then((response) => response.json())
-      .then((data) => {
+    fetchPatients(selectedDate)
+      .then(data => {
         setPatients(data);
         setFilteredPatients(data);
       })
-      .catch((error) => {
-        console.error('Error fetching data:', error);
+      .catch(error => {
+        console.error('Error fetching patient data:', error);
       });
-  }, []);
+  }, [selectedDate]);
 
   const classifyBMI = (bmi) => {
     if (bmi < 18.5) return 'Underweight';
@@ -28,12 +27,6 @@ const PatientListing = () => {
   const handleDateFilterChange = (e) => {
     const selectedDate = e.target.value;
     setSelectedDate(selectedDate);
-
-    // Filter patient records based on the selected visit date
-    const filtered = patients?.filter((patient) => {
-      return patient.visitDate === selectedDate;
-    }) || [];
-    setFilteredPatients(filtered);
   };
 
   return (
@@ -75,4 +68,3 @@ const PatientListing = () => {
 };
 
 export default PatientListing;
-

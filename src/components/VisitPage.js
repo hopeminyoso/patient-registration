@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './VisitPage.css';
 
-function VisitPage({ onSave, onNavigate }) {
+function VisitPage({ onNavigate }) {
   const [formData, setFormData] = useState({
     date: '',
     height: '',
@@ -17,8 +17,8 @@ function VisitPage({ onSave, onNavigate }) {
     const { height, weight } = formData;
     if (height && weight) {
       const heightInMeters = height / 100; // Convert height to meters
-      const bmi = weight / (heightInMeters * heightInMeters);
-      return bmi.toFixed(2);
+      const bmi = (weight / (heightInMeters * heightInMeters)).toFixed(2); // Calculate BMI
+      return bmi;
     }
     return '';
   };
@@ -38,21 +38,37 @@ function VisitPage({ onSave, onNavigate }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Calculate BMI
     const calculatedBMI = calculateBMI();
     setFormData({ ...formData, bmi: calculatedBMI });
-  
+
+    // Prepare visit data
+    const visitData = {
+      date: formData.date,
+      height: formData.height,
+      weight: formData.weight,
+      bmi: calculatedBMI,
+      generalHealth: formData.generalHealth,
+      loosingWeight: formData.loosingWeight,
+      comment: formData.comment,
+      takingDrugs: formData.takingDrugs,
+    };
+
     try {
+      // Send a POST request to your backend API
       const response = await fetch('/api/visits', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(visitData),
       });
-  
+
       if (response.ok) {
         // Handle a successful response
         // You might want to navigate to a different page or show a success message
+        onNavigate(); // Placeholder for navigating to another page
       } else {
         // Handle errors, e.g., validation errors from the backend
         console.error('Error saving visit data');
@@ -61,7 +77,6 @@ function VisitPage({ onSave, onNavigate }) {
       console.error('Error connecting to the server:', error);
     }
   };
-
   return (
     <div className="visit-container">
       <h2>Visit Information</h2>
