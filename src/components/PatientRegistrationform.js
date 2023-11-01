@@ -1,15 +1,26 @@
-import React, { useState } from "react";
-import Swal from "sweetalert2";
+import React, { useState, useEffect } from 'react';
+import Swal from 'sweetalert2';
 import './PatientRegistrationForm.css';
-import { registerPatient } from '../api/api'; // Import the registerPatient function from your API module
+import { getAllPatients } from '../api/patientAPI';
 
 function PatientRegistrationForm({ onNavigate }) {
+  const [patients, setPatients] = useState([]); // To store patient data
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    dateOfBirth: "",
-    gender: "Male",
+    firstName: '',
+    lastName: '',
+    dateOfBirth: '',
+    gender: 'Male',
   });
+
+  useEffect(() => {
+    getAllPatients()
+      .then((data) => {
+        setPatients(data);
+      })
+      .catch((error) => {
+        console.error('Error fetching patient data:', error);
+      });
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,30 +32,8 @@ function PatientRegistrationForm({ onNavigate }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Prepare patient registration data
-    const patientData = {
-      firstName: formData.firstName,
-      lastName: formData.lastName,
-      dateOfBirth: formData.dateOfBirth,
-      gender: formData.gender,
-    };
-
-    // Use the registerPatient function to send the patient data to your API
-    registerPatient(patientData)
-      .then((response) => {
-        Swal.fire({
-          title: 'Registration Successful',
-          text: `Your unique patient number is: ${response.patientNumber}`, // Make sure your API returns the patientNumber
-          icon: 'success',
-        }).then(() => {
-          // Navigate to the VisitPage after clicking "OK" in SweetAlert
-          onNavigate();
-        });
-      })
-      .catch((error) => {
-        console.error('Error registering the patient:', error);
-      });
+    // Use the 'formData' state to send the patient registration data to the server
+    // Make sure the createPatient function sends the data to the API
   };
 
   return (
@@ -58,7 +47,7 @@ function PatientRegistrationForm({ onNavigate }) {
               type="text"
               id="firstName"
               name="firstName"
-              value={formData.firstName}
+              value={formData.firstName} // Bind form data to the input value
               onChange={handleChange}
               required
             />
@@ -69,7 +58,7 @@ function PatientRegistrationForm({ onNavigate }) {
               type="text"
               id="lastName"
               name="lastName"
-              value={formData.lastName}
+              value={formData.lastName} // Bind form data to the input value
               onChange={handleChange}
               required
             />
@@ -80,7 +69,7 @@ function PatientRegistrationForm({ onNavigate }) {
               type="date"
               id="dateOfBirth"
               name="dateOfBirth"
-              value={formData.dateOfBirth}
+              value={formData.dateOfBirth} // Bind form data to the input value
               onChange={handleChange}
               required
             />
@@ -90,7 +79,7 @@ function PatientRegistrationForm({ onNavigate }) {
             <select
               id="gender"
               name="gender"
-              value={formData.gender}
+              value={formData.gender} // Bind form data to the input value
               onChange={handleChange}
               required
             >

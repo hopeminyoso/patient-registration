@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'http://localhost:5000/api/visits'; 
+const baseURL = 'http://localhost:5000/api/visits';
 
 // Function to create a new visit
 const createVisit = async (visitData) => {
@@ -23,7 +23,5 @@ const getAllVisits = async () => {
     throw error;
   }
 };
-
-// Define other visit-related functions (update, delete, etc.) as needed
 
 export { createVisit, getAllVisits };

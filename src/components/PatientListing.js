@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Patient.css';
-import { fetchPatients } from '../api/api';
+import { getAllPatients } from '../api/patientAPI'; // Assuming this is the correct API function
 
 const PatientListing = () => {
   const [patients, setPatients] = useState([]);
@@ -8,7 +8,7 @@ const PatientListing = () => {
   const [selectedDate, setSelectedDate] = useState('');
 
   useEffect(() => {
-    fetchPatients(selectedDate)
+    getAllPatients() // Use the correct function here
       .then(data => {
         setPatients(data);
         setFilteredPatients(data);
@@ -17,6 +17,7 @@ const PatientListing = () => {
         console.error('Error fetching patient data:', error);
       });
   }, [selectedDate]);
+
 
   const classifyBMI = (bmi) => {
     if (bmi < 18.5) return 'Underweight';
