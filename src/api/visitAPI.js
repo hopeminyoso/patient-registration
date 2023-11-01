@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'http://localhost:5000/api/visits'; // Replace with your actual backend server URL
+const baseURL = 'http://localhost:5000/api/visits'; 
 
 // Function to create a new visit
 const createVisit = async (visitData) => {

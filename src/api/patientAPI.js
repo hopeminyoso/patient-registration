@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'http://localhost:5000/api/patients'; // Replace with your actual backend server URL
+const baseURL = 'http://localhost:5000/api/patients'; 
 
 // Function to create a new patient
 const createPatient = async (patientData) => {
